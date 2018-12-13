@@ -16,7 +16,7 @@ public class CSVFileBuilder {
         langStructs.add(langStruct);
     }
 
-    public void build() {
+    public void build(boolean showUntranslatable) {
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("Strings");
 
@@ -43,11 +43,18 @@ public class CSVFileBuilder {
 
         LangStruct primaryStruct = langStructs.get(0);
         for (Map.Entry<String, String> entry : primaryStruct.getStringMap().entrySet()) {
+            String key = entry.getKey();
+
+            if(!showUntranslatable) {
+                Boolean translatable = primaryStruct.getTranslatableMap().get(key);
+                if (translatable != null && !translatable)
+                    continue;
+            }
+
             row = sheet.createRow(rowNum++);
             colNum = 0;
 
             cell = row.createCell(colNum++);
-            String key = entry.getKey();
             cell.setCellValue(key);
 
             cell = row.createCell(colNum++);
@@ -66,29 +73,9 @@ public class CSVFileBuilder {
         }
 
 
-//        for (LangStruct langStruct : langStructs) {
-//            row = sheet.createRow(rowNum++);
-//            cell = row.createCell(colNum++);
-//            cell.setCellValue(langStruct.getLang());
-//        }
-
-//        for (Object[] datatype : datatypes) {
-//            Row row = sheet.createRow(rowNum++);
-//            int colNum = 0;
-//            for (Object field : datatype) {
-//                Cell cell = row.createCell(colNum++);
-//                if (field instanceof String) {
-//                    cell.setCellValue((String) field);
-//                } else if (field instanceof Integer) {
-//                    cell.setCellValue((Integer) field);
-//                }
-//            }
-//        }
-
         try {
             FileOutputStream outputStream = new FileOutputStream("strings.xlsx");
             workbook.write(outputStream);
-//            workbook.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

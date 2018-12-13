@@ -14,6 +14,7 @@ public class LangStruct {
     private String lang;
     private File stringFile;
     private Map<String, String> stringMap = new HashMap<>();
+    private Map<String, Boolean> translatableMap = new HashMap<>();
 
     private void extractStrings() throws Exception {
 
@@ -29,11 +30,20 @@ public class LangStruct {
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) nNode;
                 String name = eElement.getAttribute("name");
+
+                String translatable = eElement.getAttribute("translatable");
+                if (!translatable.isEmpty())
+                    translatableMap.put(name, Boolean.valueOf(translatable));
+
                 String value = eElement.getChildNodes().item(0).getTextContent();
                 stringMap.put(name, value);
             }
         }
 
+    }
+
+    public Map<String, Boolean> getTranslatableMap() {
+        return translatableMap;
     }
 
     public Map<String, String> getStringMap() {

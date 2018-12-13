@@ -8,6 +8,6 @@ public class TestClassMain {
         for (LangStruct file : files) {
             csvFileBuilder.addLangStructs(file);
         }
-        csvFileBuilder.build();
+        csvFileBuilder.build(false);
     }
 }
