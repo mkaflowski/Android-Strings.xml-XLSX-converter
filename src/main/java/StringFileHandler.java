@@ -28,8 +28,7 @@ public class StringFileHandler {
         if(split.length<2)
             return defaultLanguage;
 
-        String lang = split[split.length-1];
-        return lang;
+        return split[split.length-1];
     }
 
     private static List<File> findStringFiles(String resPath){
@@ -39,13 +38,14 @@ public class StringFileHandler {
         File folder = new File(resPath);
         File[] listOfFiles = folder.listFiles();
 
-        for (int i = 0; i < listOfFiles.length; i++) {
-            File file = listOfFiles[i];
-            if (file.isFile()) {
-                if(file.getName().contains("strings.xml"))
-                    stringFiles.add(file);
-            } else if (file.isDirectory()) {
-                stringFiles.addAll(findStringFiles(resPath+"/"+ file.getName()));
+        if (listOfFiles != null) {
+            for (File file : listOfFiles) {
+                if (file.isFile()) {
+                    if (file.getName().contains("strings.xml"))
+                        stringFiles.add(file);
+                } else if (file.isDirectory()) {
+                    stringFiles.addAll(findStringFiles(resPath + "/" + file.getName()));
+                }
             }
         }
 
