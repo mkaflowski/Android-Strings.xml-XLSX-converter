@@ -4,10 +4,10 @@ public class TestClassMain {
     public static void main(String[] args) {
         List<LangStruct> files = StringFileHandler.getLangStructs("/Users/mateuszkaflowski/AndroidStudioProjects/podcast-freak");
 
+        CSVFileBuilder csvFileBuilder = new CSVFileBuilder();
         for (LangStruct file : files) {
-            System.out.println(file);
+            csvFileBuilder.addLangStructs(file);
         }
-
-        new CSVFile().build();
+        csvFileBuilder.build();
     }
 }
