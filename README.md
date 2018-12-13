@@ -1,2 +1,2 @@
-# Android-Strings.xml-CSV-converter
-Android Strings.xml to CSV converter and vice versa.
+# Android-Strings.xml-XLSX-converter
+Android Strings.xml to XLSX (Excel format) converter and vice versa.
