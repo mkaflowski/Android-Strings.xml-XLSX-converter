@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/androidstringtool.iml" filepath="$PROJECT_DIR$/.idea/modules/androidstringtool.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/androidstringtool_main.iml" filepath="$PROJECT_DIR$/.idea/modules/androidstringtool_main.iml" group="androidstringtool" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/androidstringtool_test.iml" filepath="$PROJECT_DIR$/.idea/modules/androidstringtool_test.iml" group="androidstringtool" />
+    </modules>
+  </component>
+</project>
