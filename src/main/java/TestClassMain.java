@@ -7,5 +7,7 @@ public class TestClassMain {
         for (LangStruct file : files) {
             System.out.println(file);
         }
+
+        new CSVFile().build();
     }
 }
